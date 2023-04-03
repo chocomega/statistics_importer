@@ -25,6 +25,7 @@ pip install -r requirements.txt
 Rename the `script_config.example.yaml` file to `script_config.yaml` and edit it to suit your needs. All the following keys are mandatory:
 
 - `ha_url`: URL of your Home Assistant instance
+- `ha_use_ssl`: Specify if Home Assistant uses SSL or not
 - `ha_access_token`: Long-lived access token for your Home Assistant instance
 - `med_cache_db_path`: Path to the cache database of MyElectricalData
 - `med_config_path`: Path to the configuration file of MyElectricalData
@@ -51,7 +52,7 @@ shell_command:
     statistics_delete_all: python statistics_importer/statistics_importer.py -d
 ```
 
-You can then create an automation to call the service `shell_command.statistics_import` periodically or when MyElectricalData cache is updated.
+You can then create an automation calling the service `shell_command.statistics_import` periodically or when MyElectricalData cache is updated.
 
 ## Warning
 - Home Assistant may take some time to display the newly created statistics. Please wait, they will eventually show up in the UI.

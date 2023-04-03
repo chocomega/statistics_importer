@@ -1,4 +1,4 @@
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 
 import aiohttp
 import argparse
@@ -33,6 +33,7 @@ class Config:
     ha_access_token: str
     med_cache_db_path: str
     med_config_path: str
+    ha_use_ssl: bool = False
 
     @classmethod
     def load(cls, path: str = os.path.abspath("script_config.yaml")) -> "Config":
@@ -423,7 +424,7 @@ async def main(args: argparse.Namespace) -> int:
     start_time = time.time()
 
     try:
-        # Read config.yaml
+        # Read script_config.yaml
         config = Config.load()
 
         # Read MyElectricalData config.yaml
@@ -431,7 +432,7 @@ async def main(args: argparse.Namespace) -> int:
             med_config = yaml.safe_load(file)
 
         # Create the WebSocket connection
-        url = f"ws://{config.ha_url}/api/websocket"
+        url = f"{'wss' if config.ha_use_ssl else 'ws'}://{config.ha_url}/api/websocket"
         print("Connecting to websocket at", url)
 
         async with aiohttp.ClientSession() as session:
@@ -451,8 +452,8 @@ async def main(args: argparse.Namespace) -> int:
 
     except Exception as e:
         tb = traceback.extract_tb(e.__traceback__)
-        print(f"ERROR on line {tb[0].lineno}: {tb[0].line}")
-        print(f"{type(e).__name__} - {e}")
+        print(f"ERROR on line {tb[0].lineno}: {tb[0].line}", file=sys.stderr)
+        print(f"{type(e).__name__} - {e}", file=sys.stderr)
         return 1
 
     finally:

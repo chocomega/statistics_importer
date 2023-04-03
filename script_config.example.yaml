@@ -3,6 +3,9 @@
 # URL of Home Assistant
 ha_url: "localhost:8123"
 
+# Specify if Home Assistant uses SSL or not
+ha_use_ssl: false
+
 # Long-Lived access token from Home Assistant
 ha_access_token: "xxxxxx"
 
