@@ -1,0 +1,13 @@
+# Configuration for Statistics Importer script
+
+# URL of Home Assistant
+ha_url: "localhost:8123"
+
+# Long-Lived access token from Home Assistant
+ha_access_token: "xxxxxx"
+
+# File path the to cache database of MyElectricalData
+med_cache_db_path: "../myelectricaldata/cache.db"
+
+# Path to the configuration file of MyElectricalData
+med_config_path: "../myelectricaldata/config.yaml"
