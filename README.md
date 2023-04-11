@@ -5,7 +5,7 @@ This Python script retrieves statistics from [MyElectricalData](https://github.c
 Long Term Statistics will be created in Home Assistant and usable in the Energy Dashboard.
 
 ## Pre-requisites
-- Python 3.4 or higher
+- Python 3.5 or higher
 - A running instance of Home Assistant 2022.10.0 or higher
 - A running instance of MyElectricalData 0.8.13-11 or higher
 - MyElectricalData must be configured with the cache and hourly details enabled, cf. [wiki](https://github.com/m4dm4rtig4n/myelectricaldata/wiki/03.-Configuration)
